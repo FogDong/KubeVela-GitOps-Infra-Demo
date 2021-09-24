@@ -1,0 +1,27 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: wordpress
+  namespace: default
+spec:
+  components:
+    - name: wordpress
+      type: helm
+      properties:
+        repoType: helm
+        repoUrl: https://charts.bitnami.com/bitnami
+        chart: wordpress
+        version: "12.0.3"
+        values:
+          mariadb:
+            enabled: false
+          externalDatabase:
+            host: my-cluster-mysql.mysql.svc.cluster.local
+            user: root
+            password: mypass
+            database: mysql
+            port: 3306
+          service:
+            type: ClusterIP
+          ingress:
+            enabled: true
