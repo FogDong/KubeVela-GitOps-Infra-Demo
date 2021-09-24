@@ -18,7 +18,7 @@ spec:
           externalDatabase:
             host: my-cluster-mysql.mysql.svc.cluster.local
             user: root
-            password: mypass
+            password: my-pass
             database: mysql
             port: 3306
           service:
