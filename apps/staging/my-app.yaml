@@ -1,30 +1,29 @@
 apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
-  name: wordpress
+  name: my-app
   namespace: default
 spec:
   components:
-    - name: wordpress
-      type: helm
+    - name: my-server
+      type: webservice
       properties:
-        repoType: helm
-        url: https://charts.bitnami.com/bitnami
-        chart: wordpress
-        version: "12.0.3"
-        values:
-          mariadb:
-            enabled: false
-          externalDatabase:
-            host: my-cluster-mysql.mysql.svc.cluster.local
-            user: root
-            password: my-pass
-            database: mysql
-            port: 3306
-          service:
-            type: ClusterIP
-          ingress:
-            enabled: true
+        image: ghcr.io/fogdong/test-fog:master-a6f6a7d8-1632648915 # {"$imagepolicy": "default:gitops"}
+        port: 8088
+        env:
+          - name: MYSQL_HOST
+            value: my-cluster-mysql.mysql.svc.cluster.local
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: ROOT_PASSWORD
+      traits:
+        - type: ingress
+          properties:
+            domain: testsvc.example.com
+            http:
+              /: 8088
 
   policies:
     - name: env-policy
