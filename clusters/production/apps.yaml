@@ -13,4 +13,4 @@ spec:
       pullInterval: 1m
       git:
         branch: main
-      path: ./apps/staging
+      path: ./apps/production
