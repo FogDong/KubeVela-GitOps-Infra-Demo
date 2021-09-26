@@ -31,11 +31,11 @@ spec:
       type: env-binding
       properties:
         envs:
-          - name: staging
-            placement: # 选择要部署的集群
+          - name: prod
+            placement:
               clusterSelector:
-                name: cluster-staging
-            selector: # 选择要使用的组件
+                name: cluster-prod
+            selector:
               components:
                 - wordpress
 
@@ -46,4 +46,4 @@ spec:
         type: deploy2env
         properties:
           policy: env-policy
-          env: staging
+          env: prod
