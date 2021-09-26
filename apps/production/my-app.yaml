@@ -36,7 +36,7 @@ spec:
                 name: cluster-prod
             selector:
               components:
-                - wordpress
+                - my-server
 
   workflow:
     steps:

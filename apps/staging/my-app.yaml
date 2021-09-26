@@ -36,7 +36,7 @@ spec:
                 name: cluster-staging
             selector: # 选择要使用的组件
               components:
-                - wordpress
+                - my-server
 
   workflow:
     steps:
