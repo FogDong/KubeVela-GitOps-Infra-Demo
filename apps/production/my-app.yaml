@@ -20,7 +20,6 @@ spec:
                 key: ROOT_PASSWORD
       traits:
         - type: ingress
-          name: my-ingress
           properties:
             domain: testsvc.example.com
             http:
