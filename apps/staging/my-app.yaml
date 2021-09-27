@@ -26,24 +26,24 @@ spec:
             http:
               /: 8088
 
-  policies:
-    - name: env-policy
-      type: env-binding
-      properties:
-        envs:
-          - name: staging
-            placement: # 选择要部署的集群
-              clusterSelector:
-                name: cluster-staging
-            selector: # 选择要使用的组件
-              components:
-                - my-server
+  # policies:
+  #   - name: env-policy
+  #     type: env-binding
+  #     properties:
+  #       envs:
+  #         - name: staging
+  #           placement: # 选择要部署的集群
+  #             clusterSelector:
+  #               name: cluster-staging
+  #           selector: # 选择要使用的组件
+  #             components:
+  #               - my-server
 
-  workflow:
-    steps:
-      # 部署到预发环境中
-      - name: deploy-staging
-        type: deploy2env
-        properties:
-          policy: env-policy
-          env: staging
+  # workflow:
+  #   steps:
+  #     # 部署到预发环境中
+  #     - name: deploy-staging
+  #       type: deploy2env
+  #       properties:
+  #         policy: env-policy
+  #         env: staging
