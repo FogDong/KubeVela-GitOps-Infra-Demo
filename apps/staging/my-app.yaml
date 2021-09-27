@@ -8,12 +8,12 @@ spec:
     - name: my-server
       type: webservice
       properties:
-        image: ghcr.io/fogdong/test-fog:master-a6f6a7d8-1632648915 # {"$imagepolicy": "default:gitops"}
+        image: ghcr.io/fogdong/test-fog:master-cba5605f-1632714412 # {"$imagepolicy": "default:gitops"}
         port: 8088
         env:
-          - name: MYSQL_HOST
-            value: my-cluster-mysql.mysql.svc.cluster.local
-          - name: MYSQL_PASSWORD
+          - name: DB_HOST
+            value: mysql-cluster-mysql.default.svc.cluster.local:3306
+          - name: DB_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: mysql-secret
@@ -25,24 +25,24 @@ spec:
             http:
               /: 8088
 
-  # policies:
-  #   - name: env-policy
-  #     type: env-binding
-  #     properties:
-  #       envs:
-  #         - name: staging
-  #           placement: # 选择要部署的集群
-  #             clusterSelector:
-  #               name: cluster-staging
-  #           selector: # 选择要使用的组件
-  #             components:
-  #               - my-server
+  policies:
+    - name: env-policy
+      type: env-binding
+      properties:
+        envs:
+          - name: staging
+            placement: # 选择要部署的集群
+              clusterSelector:
+                name: cluster-staging
+            selector: # 选择要使用的组件
+              components:
+                - my-server
 
-  # workflow:
-  #   steps:
-  #     # 部署到预发环境中
-  #     - name: deploy-staging
-  #       type: deploy2env
-  #       properties:
-  #         policy: env-policy
-  #         env: staging
+  workflow:
+    steps:
+      # 部署到预发环境中
+      - name: deploy-staging
+        type: deploy2env
+        properties:
+          policy: env-policy
+          env: staging
