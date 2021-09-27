@@ -1,1 +1,0 @@
-# KubeVela-GitOps-Infra-Demo
