@@ -24,25 +24,3 @@ spec:
             domain: testsvc.example.com
             http:
               /: 8088
-
-  # policies:
-  #   - name: env-policy
-  #     type: env-binding
-  #     properties:
-  #       envs:
-  #         - name: prod
-  #           placement:
-  #             clusterSelector:
-  #               name: cluster-prod
-  #           selector:
-  #             components:
-  #               - my-server
-
-  # workflow:
-  #   steps:
-  #     # 部署到预发环境中
-  #     - name: deploy-staging
-  #       type: deploy2env
-  #       properties:
-  #         policy: env-policy
-  #         env: prod
