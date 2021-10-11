@@ -8,7 +8,7 @@ spec:
     - name: my-server
       type: webservice
       properties:
-        image: ghcr.io/fogdong/test-fog:master-b79500cd-1633937808 # {"$imagepolicy": "default:apps"}
+        image: ghcr.io/fogdong/test-fog:master-ae837438-1633938401 # {"$imagepolicy": "default:apps"}
         port: 8088
         env:
           - name: DB_HOST
