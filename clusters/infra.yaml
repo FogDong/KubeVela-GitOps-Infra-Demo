@@ -12,5 +12,5 @@ spec:
       secretRef: git-secret
       pullInterval: 10m
       git:
-        branch: main
+        branch: dev
       path: ./infrastructure

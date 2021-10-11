@@ -12,7 +12,7 @@ spec:
       secretRef: git-secret
       pullInterval: 1m
       git:
-        branch: main
+        branch: dev
       path: ./apps
       imageRepository:
         image: ghcr.io/fogdong/test-fog
