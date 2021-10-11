@@ -21,6 +21,6 @@ spec:
       traits:
         - type: ingress
           properties:
-            domain: testsvc.example.com
+            domain: kubevela.example.com
             http:
               /: 8088
