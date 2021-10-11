@@ -14,13 +14,3 @@ spec:
       git:
         branch: main
       path: ./apps
-      imageRepository:
-        image: ghcr.io/fogdong/test-fog
-        # secretRef: imagesecret
-        filterTags:
-          pattern: '^master-[a-f0-9]+-(?P<ts>[0-9]+)'
-          extract: '$ts'
-        policy:
-          numerical:
-            order: asc
-        commitMessage: "Image: {{range .Updated.Images}}{{println .}}{{end}}"
