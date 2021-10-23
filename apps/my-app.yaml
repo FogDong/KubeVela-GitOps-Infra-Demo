@@ -8,7 +8,7 @@ spec:
     - name: my-server
       type: webservice
       properties:
-        image: ghcr.io/fogdong/test-fog:master-ae837438-1633938401
+        image: ghcr.io/fogdong/test-fog:master-8a4cf881-1633951858
         port: 8088
         env:
           - name: DB_HOST
@@ -24,3 +24,24 @@ spec:
             domain: test.example.com
             http:
               /: 8088
+
+  workflow:
+    steps:
+      - name: apply-server
+        type: apply-component
+        properties: 
+          component: my-server
+        outputs:
+          - name: server-status
+            valueFrom: output.status.conditions[0].message + "\nImage:" + output.spec.template.spec.containers[0].image
+      - name: slack-notification
+        type: webhook-notification
+        inputs:
+          - from: server-status
+            parameterKey: slack.message.text
+        properties:
+          slack:
+            url:
+              fromSecret:
+                name: my-secret
+                key: slack
