@@ -33,7 +33,7 @@ spec:
           component: my-server
         outputs:
           - name: server-status
-            valueFrom: output.status.conditions[0].message + "\nImage:" + output.spec.template.spec.containers[0].image
+            valueFrom: output.spec.template.spec.containers[0].image + " image applied."
       - name: slack-notification
         type: webhook-notification
         inputs:
