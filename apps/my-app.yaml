@@ -21,7 +21,7 @@ spec:
       traits:
         - type: ingress
           properties:
-            domain: test.example.com
+            domain: demo.c728add480b7640da8dc138ee6e14db0c.cn-hongkong.alicontainer.com
             http:
               /: 8088
 
