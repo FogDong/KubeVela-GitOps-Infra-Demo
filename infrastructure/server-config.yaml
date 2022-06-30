@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: server-config
   namespace: default
-Data:
+data:
   config: my-config
