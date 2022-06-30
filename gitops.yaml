@@ -4,7 +4,7 @@ metadata:
   name: image-gitops
 spec:
   components:
-  - name: database-config
+  - name: image-gitops
     type: kustomize
     properties:
       repoType: git
