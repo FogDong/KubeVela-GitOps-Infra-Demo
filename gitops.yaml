@@ -18,18 +18,18 @@ spec:
         branch: image
       # 监听变动的路径，指向仓库中 application 目录下的文件
       path: ./application
-  imageRepository:
-    # 镜像地址
-    image: ghcr.io/fogdong/test-fog
-    # 如果这是一个私有的镜像仓库，可以通过 `kubectl create secret docker-registry` 创建对应的镜像秘钥并相关联
-    # secretRef: imagesecret
-    filterTags:
-      # 可对镜像 tag 进行过滤
-      pattern: '^master-[a-f0-9]+-(?P<ts>[0-9]+)'
-      extract: '$ts'
-    # 通过 policy 筛选出最新的镜像 Tag 并用于更新
-    policy:
-      numerical:
-        order: asc
-    # 追加提交信息
-    commitMessage: "Image: {{range .Updated.Images}}{{println .}}{{end}}"
+      imageRepository:
+        # 镜像地址
+        image: ghcr.io/fogdong/test-fog
+        # 如果这是一个私有的镜像仓库，可以通过 `kubectl create secret docker-registry` 创建对应的镜像秘钥并相关联
+        # secretRef: imagesecret
+        filterTags:
+          # 可对镜像 tag 进行过滤
+          pattern: '^master-[a-f0-9]+-(?P<ts>[0-9]+)'
+          extract: '$ts'
+        # 通过 policy 筛选出最新的镜像 Tag 并用于更新
+        policy:
+          numerical:
+            order: asc
+        # 追加提交信息
+        commitMessage: "Image: {{range .Updated.Images}}{{println .}}{{end}}"
