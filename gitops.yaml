@@ -1,0 +1,21 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: infra-gitops
+spec:
+  components:
+  - name: database-config
+    type: kustomize
+    properties:
+      repoType: git
+      # 将此处替换成你需要监听的 git 配置仓库地址
+      url: https://github.com/FogDong/KubeVela-GitOps-Infra-Demo
+      # 如果是私有仓库，还需要关联 git secret
+      # secretRef: git-secret
+      # 自动拉取配置的时间间隔，由于基础设施的变动性较小，此处设置为十分钟
+      pullInterval: 10m
+      git:
+        # 监听变动的分支
+        branch: infra
+      # 监听变动的路径，指向仓库中 infrastructure 目录下的文件
+      path: ./infrastructure
