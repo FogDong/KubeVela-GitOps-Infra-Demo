@@ -1,11 +1,11 @@
 apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
-  name: server
+  name: my-app
   namespace: default
 spec:
   components:
-    - name: server
+    - name: my-app
       type: webservice
       properties:
-        image: nginx
+        image: nginx # {"$imagepolicy": "default:image-gitops"}
